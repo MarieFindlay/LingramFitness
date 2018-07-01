@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Space+Mono");
+@import url("https://fonts.googleapis.com/css?family=Cousine|Fira+Mono|Source+Code+Pro:300,400");
+@import url("https://fonts.googleapis.com/css?family=Cousine|Fira+Mono|Open+Sans:300|Source+Code+Pro:300,400");
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+
+$sectionWidth: 33.33%;
+$mainFont: "Nanum Myeongjo";
+$monoFont: "Cousine";
+$sansFont: "Open Sans";
+$lightGrey: #f5f5f5;
+$yellow: #f5ee32;
+$blue: #235d6b;
+$darkerBlue: hsl(191, 75, 22);
+$lighterYellow: hsl(57, 80, 70);
+$darkGrey: #101918;
+$weightsBackground: url("Assets/weightsBannerBackground.jpg");
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $darkerBlue;
+}
+
+@mixin mobile {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+@mixin smallWindow {
+  @media (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin backgroundFixedImage($height) {
+  height: $height;
+  background-image: $weightsBackground;
+  background-position: center;
+  background-attachment: fixed;
+  @include mobile {
+    background-attachment: scroll;
+  }
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+%transparent {
+  @include backgroundFixedImage(20rem);
+}
+
+.banner {
+  @include backgroundFixedImage(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    height: auto;
+    @include mobile {
+      visibility: hidden;
+    }
+  }
+  h1 {
+    visibility: hidden;
+    @include mobile {
+      visibility: visible;
+    }
+    position: absolute;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: $blue;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    color: $yellow;
+    font-family: $mainFont;
+    span {
+      display: block;
+    }
+    .line1 {
+      font-size: 1.7em;
+      letter-spacing: 0.1em;
+      font-weight: lighter;
+    }
+    .line2 {
+      font-size: 0.9em;
+      letter-spacing: 0.6em;
+    }
+  }
+}
+.mainNav {
+  background-color: $lighterYellow;
+  padding: 0.75rem;
+  @include mobile {
+    padding: 0rem;
+    left: 5%;
+    width: 90%;
+    background-color: transparent;
+  }
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  ul {
+    @include mobile {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      @include mobile {
+        background-color: $lighterYellow;
+        opacity: 0.85;
+        color: $darkGrey;
+        font-size: 1em;
+        display: block;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 0.6rem;
+        margin-top: -1px;
+      }
+      font-family: $monoFont;
+      font-size: 1.3em;
+      display: inline;
+      margin-right: 30px;
+      letter-spacing: 0.01em;
+      color: $darkGrey;
+      word-spacing: -0.3em;
+      .arrow {
+        @include mobile {
+          visibility: visible;
+        }
+        visibility: hidden;
+        position: absolute;
+        right: 25px;
+      }
+    }
+  }
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+@mixin section($background-color, $color) {
+  background-color: $background-color;
+  color: $color;
+  display: flex;
+}
+
+%sectionImg {
+  height: 600px;
+  width: 500px;
+  @include smallWindow {
+    align-self: center;
+  }
+  @include mobile {
+    width: 100%;
+    height: 50%;
+  }
+}
+
+%sectionH3 {
+  font-size: 2em;
+  font-family: $monoFont;
+  letter-spacing: 0.1em;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: $yellow solid 1px;
+  padding-bottom: 1rem;
+  @include mobile {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-size: 1.9em;
+    width: 100%;
+  }
+}
+
+%sectionTextContainer {
+  width: 100%;
+  margin-left: 4rem;
+  margin-top: 4rem;
+  margin-right: 4rem;
+  padding-right: 4rem;
+  @include smallWindow {
+    margin: 1rem;
+  }
+  @include mobile {
+    width: 100%;
+    margin-right: 0%;
+    margin-left: 0%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+  }
+}
+
+%sectionP {
+  font-family: $sansFont;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+  font-size: 0.9em;
+  line-height: 1.5em;
+  font-weight: 800;
+  @include mobile {
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+  }
+}
+
+%sectionH4 {
+  @extend %sectionP;
+  font-family: $monoFont;
+  letter-spacing: 0.15em;
+}
+
+%sectionUl {
+  margin-left: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-family: $sansFont;
+  list-style-type: square;
+  margin-bottom: 0rem;
+}
+
+%sectionLi {
+  margin-left: 0.8rem;
+  margin-bottom: 0.5rem;
+  margin-right: 0.8rem;
+  line-height: 1.3em;
+  letter-spacing: 0.05em;
+  font-family: $sansFont;
+}
+
+.aboutMeSection {
+  @include section($blue, $lightGrey);
+  img {
+    @extend %sectionImg;
+  }
+  h3 {
+    @extend %sectionH3;
+  }
+  .aboutMeTextContainer {
+    @extend %sectionTextContainer;
+  }
+  h4 {
+    @extend %sectionH4;
+  }
+  p {
+    @extend %sectionP;
+  }
+  ul {
+    @extend %sectionUl;
+    li {
+      @extend %sectionLi;
+    }
+  }
+  @include mobile {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+}
+
+.PTSection {
+  @include section($darkerBlue, $lightGrey);
+  h3 {
+    @extend %sectionH3;
+  }
+  h4 {
+    @extend %sectionH4;
+  }
+  p {
+    @extend %sectionP;
+  }
+  ul {
+    @extend %sectionUl;
+    li {
+      @extend %sectionLi;
+      margin-left: -0.7rem;
+    }
+  }
+  img {
+    @extend %sectionImg;
+    width: 900px;
+    @include mobile {
+      width: 100%;
+    }
+  }
+  @include mobile {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.PTTextContainer {
+  @extend %sectionTextContainer;
+}
+
+.classesSection {
+  width: 100%;
+  @include section($blue, $lightGrey);
+  img {
+    @extend %sectionImg;
+  }
+  h3 {
+    @extend %sectionH3;
+  }
+  @include mobile {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+}
+
+.classesTextContainer {
+  @extend %sectionTextContainer;
+  h4 {
+    @extend %sectionH4;
+  }
+  p {
+    @extend %sectionP;
+  }
+}
+
+.getInTouchSection {
+  @include section($darkerBlue, $lightGrey);
+  display: flex;
+  flex-direction: column;
+}
+
+.getInTouchTextAndIconContainer {
+  @extend %sectionTextContainer;
+  width: 90%;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.contactIntroText {
+  @extend %sectionP;
+}
+
+.getInTouchHeader {
+  @extend %sectionH3;
+}
+
+.allIconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @include smallWindow {
+    flex-direction: column;
+  }
+  @include mobile {
+    flex-direction: column;
+  }
+  margin-bottom: 6rem;
+  margin-top: 3rem;
+  @include smallWindow {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+  @include mobile {
+    margin-bottom: 2rem;
+    margin-top: 0rem;
+  }
+  a {
+    text-decoration: none;
+    color: $lightGrey;
+  }
+}
+
+.iconContainer {
+  display: flex;
+  align-content: center;
+}
+
+.socialIcon {
+  width: 50px;
+  height: 50px;
+  margin-left: 2rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.socialIconCaption {
+  font-family: $sansFont;
+  line-height: 290%;
+  font-weight: 800;
+}
+
+.transparent {
+  @extend %transparent;
+}
